@@ -50,7 +50,7 @@ buildscript {
     dependencies {
         classpath libs.android.gradlePlugin
         classpath libs.hilt.gradle.plugin
-        classpath 'com.google.firebase:perf-plugin:1.4.0'
+        classpath 'com.google.firebase:perf-plugin:1.4.1'
         classpath "com.google.firebase:firebase-appdistribution-gradle:${deps.firebase.appdistribution}"
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
         classpath 'com.google.gms:google-services:4.3.10'
