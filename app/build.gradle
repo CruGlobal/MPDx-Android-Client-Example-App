@@ -1,3 +1,7 @@
+plugins {
+    alias(libs.plugins.hilt)
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
@@ -9,8 +13,6 @@ apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.google.firebase.firebase-perf'
 
 apply plugin: 'org.ajoberstar.grgit'
-
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 33
@@ -48,14 +50,6 @@ android {
 
             multiDexEnabled true
             pseudoLocalesEnabled true
-        }
-        qa {
-            initWith debug
-            matchingFallbacks = ['debug']
-
-            versionNameSuffix '-qa'
-            applicationIdSuffix ".qa"
-
         }
         release {
             minifyEnabled true
@@ -103,22 +97,27 @@ android {
     dexOptions {
         javaMaxHeapSize "2g"
     }
+    lintOptions {
+        lintConfig file('../analysis/lint/lint.xml')
+        htmlOutput file("$project.buildDir/reports/lint/lint.html")
+        xmlOutput file("$project.buildDir/reports/lint/lintReport.xml")
+
+        abortOnError true
+    }
     testOptions {
         unitTests {
             includeAndroidResources = true
         }
     }
-    lint {
-        abortOnError true
-        htmlOutput file("$project.buildDir/reports/lint/lint.html")
-        lintConfig file('../analysis/lint/lint.xml')
-        xmlOutput file("$project.buildDir/reports/lint/lintReport.xml")
-    }
 
-    configurations.all {
-        resolutionStrategy {
-            force "org.hamcrest:hamcrest-core:${deps.hamcrest}"
-            force "org.hamcrest:hamcrest-library:${deps.hamcrest}"
+    configurations {
+        qaImplementation.extendsFrom(debugImplementation)
+
+        all {
+            resolutionStrategy {
+                force "org.hamcrest:hamcrest-core:${deps.hamcrest}"
+                force "org.hamcrest:hamcrest-library:${deps.hamcrest}"
+            }
         }
     }
 }
@@ -128,17 +127,15 @@ ext {
 }
 
 dependencies {
-    implementation libs.kotlin.coroutines
-    implementation libs.kotlin.coroutines.playServices
+    implementation "org.cru.mpdx.android:library:${deps.mpdxLib}"
+    implementation "org.cru.mpdx.android:core:${deps.mpdxLib}"
+    implementation "org.cru.mpdx.android:okta:${deps.mpdxLib}"
 
-    implementation "androidx.activity:activity:${deps.androidX.activity}"
-    implementation "androidx.activity:activity-ktx:${deps.androidX.activity}"
-    implementation "androidx.core:core-ktx:${deps.androidX.core}"
-    implementation libs.materialComponents
+    implementation libs.androidx.core.ktx
 
 //    implementation libs.firebase.core
 //    implementation libs.firebase.crashlytics
-//    implementation "com.google.firebase:firebase-messaging:${deps.firebase.messaging}"
+//    implementation libs.firebase.messaging
 //    implementation "com.google.firebase:firebase-iid:${deps.firebase.id}"
 
     implementation "org.ccci.gto.android:gto-support-androidx-lifecycle:${deps.gtoSupport}"
@@ -147,33 +144,30 @@ dependencies {
     implementation "org.ccci.gto.android:gto-support-compat:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-core:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-dagger:${deps.gtoSupport}"
-    implementation "org.ccci.gto.android:gto-support-firebase-crashlytics:${deps.gtoSupport}"
+//    implementation "org.ccci.gto.android:gto-support-firebase-crashlytics:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-jsonapi-retrofit2:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-kotlin-coroutines:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-okhttp3:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-util:${deps.gtoSupport}"
     implementation "org.ccci.gto.android:gto-support-okta:${deps.gtoSupport}"
 
-    implementation "com.google.code.gson:gson:$gson"
-    implementation libs.hilt
-    implementation "com.jakewharton:butterknife:${deps.butterknife}"
-
     implementation 'com.github.Karumi:WeakDelegate:1.0.1'
-    implementation "com.google.guava:guava:${deps.guava}"
     implementation "com.jakewharton.timber:timber:${deps.timber}"
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.4.4'
     implementation libs.eventbus
-
-    implementation "org.cru.mpdx.android:library:${deps.mpdxLib}"
-    implementation "org.cru.mpdx.android:core:${deps.mpdxLib}"
-    implementation "org.cru.mpdx.android:okta:${deps.mpdxLib}"
+    implementation libs.gson
+    implementation libs.guava
+    implementation libs.hilt
+    implementation libs.kotlin.coroutines
+    implementation libs.kotlin.coroutines.playServices
+    implementation libs.materialComponents
+    implementation libs.threetenbp.android
 
     // debugging tools
     debugImplementation "androidx.multidex:multidex:${deps.androidX.multidex}"
     debugImplementation libs.facebook.flipper
     debugImplementation libs.facebook.flipper.plugins.network
-    debugImplementation "com.facebook.soloader:soloader:${deps.facebookSoloader}"
-    debugImplementation "com.kgurgul.flipper:flipper-realm-android:${deps.flipperRealm}"
+    debugImplementation libs.facebook.flipper.plugins.realm
+    debugImplementation libs.facebook.soloader
     debugImplementation libs.leakcanary
     debugImplementation libs.okhttp3.interceptors.logging
     debugImplementation "org.ccci.gto.android:gto-support-leakcanary2:${deps.gtoSupport}"
