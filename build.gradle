@@ -59,7 +59,7 @@ plugins {
     id "com.vanniktech.android.junit.jacoco" version "0.16.0"
     id "org.ajoberstar.grgit" version "5.0.0" apply false
     alias libs.plugins.kotlin apply false
-    id "org.jlleitschuh.gradle.ktlint" version "11.1.0"
+    id "org.jlleitschuh.gradle.ktlint" version "11.2.0"
 }
 
 allprojects {
