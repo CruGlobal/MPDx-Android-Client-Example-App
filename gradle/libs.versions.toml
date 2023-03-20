@@ -1,6 +1,6 @@
 [versions]
 android-gradle-plugin = "7.4.2"
-androidx-lifecycle = "2.5.0"
+androidx-lifecycle = "2.6.0"
 dagger = "2.45"
 facebook-flipper = "0.185.0"
 gtoSupport = "4.0.0"
