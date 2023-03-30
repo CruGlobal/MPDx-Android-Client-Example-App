@@ -162,7 +162,7 @@ dependencies {
     implementation 'com.github.Karumi:WeakDelegate:1.0.1'
     implementation "com.google.guava:guava:${deps.guava}"
     implementation "com.jakewharton.timber:timber:${deps.timber}"
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.4.4'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.4.5'
     implementation libs.eventbus
 
     implementation "org.cru.mpdx.android:library:${deps.mpdxLib}"
