@@ -44,7 +44,7 @@ okhttp3-interceptors-logging = { module = "com.squareup.okhttp3:logging-intercep
 okhttp3-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp3" }
 play-tagmanager = "com.google.android.gms:play-services-tagmanager:18.0.2"
 realm-gradlePlugin = "io.realm:realm-gradle-plugin:10.15.1"
-robolectric = { module = "org.robolectric:robolectric", version = "4.10" }
+robolectric = { module = "org.robolectric:robolectric", version = "4.10.1" }
 rxjava = "io.reactivex.rxjava2:rxjava:2.2.21"
 
 [plugins]
