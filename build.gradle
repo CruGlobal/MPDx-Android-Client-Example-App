@@ -13,7 +13,7 @@ buildscript {
                 jacoco             : '0.8.7',
                 junit              : '4.13.2',
                 mpChart            : '3.1.0',
-                mpdxLib            : '2.11.10',
+                mpdxLib            : '3.0.1',
                 picasso            : '2.8',
                 picassoTransforms  : '2.4.0',
                 realmAdapters      : '4.0.0',
