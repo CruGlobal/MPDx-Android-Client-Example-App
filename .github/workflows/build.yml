@@ -2,82 +2,129 @@ name: Build App
 
 on:
   push:
-    branches: [master]
+    branches: [develop, master, feature/* ]
   pull_request:
-    branches: [master]
+    branches: [develop, master, feature/* ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  cancel-previous:
-    name: Cancel Stale In-progress Builds
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
-  static:
-    name: Static Analysis
+  build:
+    name: Build App
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Cache Gradle
-        uses: actions/cache@v2
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      - name: Run Static Analysis
+          distribution: "temurin"
+          java-version-file: ".java-version"
+      - name: Build App
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: assemble check -x test --continue --stacktrace --parallel
+          arguments: bundle --scan
+
+  checkstyle:
+    name: Checkstyle
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version-file: ".java-version"
+      - name: Run checkstyle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: checkstyle --scan
+      - name: Archive checkstyle results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: checkstyle-results
+          path: "**/build/reports/checkstyle/"
+
+  ktlint:
+    name: ktlint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version-file: ".java-version"
+      - name: Run ktlint
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ktlintCheck --scan
       - name: Archive ktlint results
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ktlint-results
           path: "**/build/reports/ktlint/"
+
+  lint:
+    name: Lint Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version-file: ".java-version"
+      - name: Run Lint Checks
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: lint --scan
       - name: Archive lint results
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: lint-results
-          path: "**/build/reports/lint-results.*"
+          path: "**/build/reports/lint-results*.*"
 
   tests:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Cache Gradle
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+        uses: actions/checkout@v4
       - name: Cache Maven
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version-file: ".java-version"
       - name: Run Unit Tests
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: test jacocoTestReport
+          cache-read-only: false
+          arguments: test   --max-workers 1 --scan
+#      - name: Codecov
+#        uses: codecov/codecov-action@v3
+#        with:
+#          token: ${{ secrets.CODECOV_TOKEN }}
+#          fail_ci_if_error: true
+#          verbose: true
       - name: Archive Unit Test results
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unit-test-results
           path: "**/build/reports/tests/"
-

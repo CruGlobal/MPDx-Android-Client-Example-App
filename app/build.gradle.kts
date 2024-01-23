@@ -65,6 +65,12 @@ android {
 
     flavorDimensions.add("env")
     productFlavors {
+        register("production") {
+            dimension = "env"
+        }
+        register("development") {
+            dimension = "env"
+        }
     }
 }
 
