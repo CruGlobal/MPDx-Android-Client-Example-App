@@ -31,6 +31,20 @@ android {
 
         buildConfigField("String", "MPDX_API_BASE_URI", "\"https://api.mpdx.org/api/v2/\"")
 
+        // region oauth BuildConfigs
+        buildConfigField("String", "AUTH_END_POINT", "\"org.mpdx\"")
+        buildConfigField("String", "TOKEN_END_POINT", "\"org.mpdx\"")
+        buildConfigField("String", "CLIENT_ID", "\"org.mpdx\"")
+        buildConfigField("String", "REDIRECT_URI", "\"org.mpdx\"")
+        buildConfigField("String", "AUTH_PROVIDER", "\"org.mpdx\"")
+        // endregion
+
+        //region okta BuildConfigs
+        buildConfigField("String", "OKTA_AUTH_SCHEME", "\"org.mpdx\"")
+        buildConfigField("String", "OKTA_CLIENT_ID", "\"ajdklfajlkfjafda\"")
+        buildConfigField("String", "OKTA_DISCOVERY_URI", "\"https://signon.okta.com\"")
+        // endregion
+
         manifestPlaceholders += mapOf("hostMpdxWeb" to "mpdx.org")
 
         proguardFile(getDefaultProguardFile("proguard-android-optimize.txt"))
@@ -51,24 +65,6 @@ android {
 
     flavorDimensions.add("env")
     productFlavors {
-        register("okta") {
-            dimension = "env"
-
-            buildConfigField("String", "OKTA_AUTH_SCHEME", "\"org.mpdx\"")
-            buildConfigField("String", "OKTA_CLIENT_ID", "\"ajdklfajlkfjafda\"")
-            buildConfigField("String", "OKTA_DISCOVERY_URI", "\"https://signon.okta.com\"")
-        }
-        register("oauth") {
-            dimension = "env"
-
-            buildConfigField("String", "AUTH_END_POINT", "\"org.mpdx\"")
-            buildConfigField("String", "TOKEN_END_POINT", "\"org.mpdx\"")
-            buildConfigField("String", "CLIENT_ID", "\"org.mpdx\"")
-            buildConfigField("String", "REDIRECT_URI", "\"org.mpdx\"")
-            buildConfigField("String", "AUTH_PROVIDER", "\"org.mpdx\"")
-        }
-
-
     }
 }
 
@@ -79,7 +75,6 @@ dependencies {
 
     implementation(libs.mpdx.lib.oauth)
 //    implementation(libs.mpdx.lib.okta)
-
 
     implementation(libs.openid.appauth)
 

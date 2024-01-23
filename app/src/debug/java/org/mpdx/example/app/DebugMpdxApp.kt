@@ -1,11 +1,10 @@
-package org.mpdx.app
+package org.mpdx.example.app
 
 import android.content.Context
 import leakcanary.LeakCanary
 import okhttp3.logging.HttpLoggingInterceptor
 import org.ccci.gto.android.common.leakcanary.crashlytics.CrashlyticsOnHeapAnalyzedListener
 import org.ccci.gto.android.common.okhttp3.util.addGlobalNetworkInterceptor
-import org.mpdx.example.app.MpdxApp
 import timber.log.Timber
 
 class DebugMpdxApp : MpdxApp() {
