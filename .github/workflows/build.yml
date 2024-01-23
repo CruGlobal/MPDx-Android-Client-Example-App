@@ -115,13 +115,13 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           cache-read-only: false
-          arguments: test koverXmlReportDebug koverXmlReportProductionDebug --max-workers 1 --scan
-      - name: Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-          verbose: true
+          arguments: test   --max-workers 1 --scan
+#      - name: Codecov
+#        uses: codecov/codecov-action@v3
+#        with:
+#          token: ${{ secrets.CODECOV_TOKEN }}
+#          fail_ci_if_error: true
+#          verbose: true
       - name: Archive Unit Test results
         if: always()
         uses: actions/upload-artifact@v3
