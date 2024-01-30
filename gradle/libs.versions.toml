@@ -147,4 +147,4 @@ androidx-compose = ["androidx-compose-runtime-livedata", "androidx-compose-ui", 
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 grgit = { id = "org.ajoberstar.grgit", version = "5.2.1" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.0.2" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.0" }
