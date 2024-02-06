@@ -52,7 +52,7 @@ eventbus = "org.greenrobot:eventbus:3.3.1"
 facebook-flipper = { module = "com.facebook.flipper:flipper", version.ref = "facebook-flipper" }
 facebook-flipper-plugins-network = { module = "com.facebook.flipper:flipper-network-plugin", version.ref = "facebook-flipper" }
 facebook-flipper-plugins-realm = "com.kgurgul.flipper:flipper-realm-android:2.2.0"
-facebook-soloader = "com.facebook.soloader:soloader:0.10.5"
+facebook-soloader = "com.facebook.soloader:soloader:0.11.0"
 firebase-appdistribution-gradlePlugin = "com.google.firebase:firebase-appdistribution-gradle:4.0.1"
 firebase-core = "com.google.firebase:firebase-core:21.1.1"
 firebase-crashlytics = "com.google.firebase:firebase-crashlytics:18.6.1"
