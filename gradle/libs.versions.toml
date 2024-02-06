@@ -93,7 +93,7 @@ hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest"}
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 javapoet = "com.squareup:javapoet:1.13.0"
-json = "org.json:json:20231013"
+json = "org.json:json:20240205"
 junit = "junit:junit:4.13.2"
 junit-params = "pl.pragmatists:JUnitParams:1.1.1"
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
