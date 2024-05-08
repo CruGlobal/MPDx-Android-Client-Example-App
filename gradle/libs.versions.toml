@@ -61,7 +61,7 @@ firebase-iid = "com.google.firebase:firebase-iid:21.1.0"
 firebase-messaging = "com.google.firebase:firebase-messaging:23.4.0"
 firebase-perf = "com.google.firebase:firebase-perf:20.5.1"
 firebase-perf-gradlePlugin = "com.google.firebase:perf-plugin:1.4.2"
-google-services-gradlePlugin = "com.google.gms:google-services:4.4.0"
+google-services-gradlePlugin = "com.google.gms:google-services:4.4.1"
 gson = "com.google.code.gson:gson:2.10.1"
 gtoSupport-api-okhttp3 = {module = "org.ccci.gto.android:gto-support-api-okhttp3", version.ref = "gtoSupport"}
 gtoSupport-androidx-fragment = { module = "org.ccci.gto.android:gto-support-androidx-fragment", version.ref = "gtoSupport" }
