@@ -101,7 +101,7 @@ kotlin-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-corou
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kotlinKover" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref="kotlin"}
-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.13"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.14"
 materialComponents = "com.google.android.material:material:1.11.0"
 mpdx-lib-lib = { module = "org.cru.mpdx.android:library", version.ref = "mpdxLib"}
 mpdx-lib-core = { module ="org.cru.mpdx.android:core", version.ref = "mpdxLib"}
