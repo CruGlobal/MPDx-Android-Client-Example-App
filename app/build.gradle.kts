@@ -20,8 +20,13 @@ plugins {
 android {
     namespace = "org.mpdx.example"
 
-    baseConfiguration(project)
-    configureCompose(project)
+    compileSdk = 34
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 33
+    }
+
     defaultConfig {
         applicationId = "org.mpdx.example"
         versionName = project.version.toString()
@@ -48,11 +53,18 @@ android {
         manifestPlaceholders += mapOf("hostMpdxWeb" to "mpdx.org")
 
         proguardFile(getDefaultProguardFile("proguard-android-optimize.txt"))
-        proguardFile("proguard-rules.pro")
+
+        vectorDrawables.useSupportLibrary = true
     }
+
     buildFeatures {
         dataBinding = true
         buildConfig = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kapt {
