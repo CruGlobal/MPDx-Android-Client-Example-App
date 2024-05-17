@@ -87,13 +87,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.mpdx.lib.lib)
-    implementation(libs.mpdx.lib.core)
+    implementation(libs.mpdx.auth.oauth)
+//    implementation(libs.mpdx.auth.okta)
+    implementation(libs.mpdx.core)
+    implementation(libs.mpdx.library)
+
     implementation(libs.androidx.core.ktx)
-
-    implementation(libs.mpdx.lib.oauth)
-//    implementation(libs.mpdx.lib.okta)
-
     implementation(libs.openid.appauth)
 
     implementation(libs.firebase.core)

@@ -103,16 +103,16 @@ kotlin-kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugi
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref="kotlin"}
 leakcanary = "com.squareup.leakcanary:leakcanary-android:2.14"
 materialComponents = "com.google.android.material:material:1.11.0"
-mpdx-lib-lib = { module = "org.cru.mpdx.android:library", version.ref = "mpdxLib"}
-mpdx-lib-core = { module ="org.cru.mpdx.android:core", version.ref = "mpdxLib"}
-mpdx-lib-okta = { module ="org.cru.mpdx.android:okta", version.ref = "mpdxLib"}
-mpdx-lib-oauth = { module ="org.cru.mpdx.android:oauth", version.ref = "mpdxLib"}
 mockito = "org.mockito:mockito-inline:5.2.0"
 mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.2.1"
 mockk = "io.mockk:mockk:1.13.9"
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 mpAndroidChart = "com.github.PhilJay:MPAndroidChart:3.1.0"
+mpdx-core = { module ="org.cru.mpdx.android:core", version.ref = "mpdxLib"}
+mpdx-library = { module = "org.cru.mpdx.android:library", version.ref = "mpdxLib"}
+mpdx-auth-okta = { module ="org.cru.mpdx.android:okta", version.ref = "mpdxLib"}
+mpdx-auth-oauth = { module ="org.cru.mpdx.android:oauth", version.ref = "mpdxLib"}
 okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3" }
 okhttp3-interceptors-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3" }
 okhttp3-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp3" }
