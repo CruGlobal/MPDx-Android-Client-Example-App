@@ -20,8 +20,13 @@ plugins {
 android {
     namespace = "org.mpdx.example"
 
-    baseConfiguration(project)
-    configureCompose(project)
+    compileSdk = 34
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 33
+    }
+
     defaultConfig {
         applicationId = "org.mpdx.example"
         versionName = project.version.toString()
@@ -48,11 +53,18 @@ android {
         manifestPlaceholders += mapOf("hostMpdxWeb" to "mpdx.org")
 
         proguardFile(getDefaultProguardFile("proguard-android-optimize.txt"))
-        proguardFile("proguard-rules.pro")
+
+        vectorDrawables.useSupportLibrary = true
     }
+
     buildFeatures {
         dataBinding = true
         buildConfig = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kapt {
@@ -75,13 +87,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.mpdx.lib.lib)
-    implementation(libs.mpdx.lib.core)
+    implementation(libs.mpdx.auth.oauth)
+//    implementation(libs.mpdx.auth.okta)
+    implementation(libs.mpdx.core)
+    implementation(libs.mpdx.library)
+
     implementation(libs.androidx.core.ktx)
-
-    implementation(libs.mpdx.lib.oauth)
-//    implementation(libs.mpdx.lib.okta)
-
     implementation(libs.openid.appauth)
 
     implementation(libs.firebase.core)

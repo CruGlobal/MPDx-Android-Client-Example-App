@@ -45,6 +45,7 @@ buildscript {
 plugins {
     alias libs.plugins.grgit apply false
     alias libs.plugins.hilt apply false
+    alias libs.plugins.kotlin apply false
     alias libs.plugins.ktlint
 }
 
@@ -84,8 +85,6 @@ allprojects {
 
     configurations.all {
         resolutionStrategy {
-            // HACK: force the correct version of lifecycle-viewmodel-ktx to address a transitive version conflict
-            force "androidx.lifecycle:lifecycle-viewmodel-ktx:${libs.versions.androidx.lifecycle.get()}"
             force libs.okhttp3
 
             // HACK: force an older version of Realm than what is referenced in gto-support
