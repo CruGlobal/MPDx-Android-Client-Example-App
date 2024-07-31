@@ -120,7 +120,7 @@ onesky-gradlePlugin = "co.brainly:plugin:1.6.0"
 openid-appauth = "net.openid:appauth:0.11.1"
 picasso = "com.squareup.picasso:picasso:2.8"
 picasso-transformations = "jp.wasabeef:picasso-transformations:2.4.0"
-play-tagmanager = "com.google.android.gms:play-services-tagmanager:18.0.4"
+play-tagmanager = "com.google.android.gms:play-services-tagmanager:18.1.0"
 realm = { module = "io.realm:realm-android-library", version.ref = "realm" }
 realm-fieldnameshelper = "dk.ilios:realmfieldnameshelper:2.0.0"
 realm-gradlePlugin = { module = "io.realm:realm-gradle-plugin", version.ref = "realm" }
