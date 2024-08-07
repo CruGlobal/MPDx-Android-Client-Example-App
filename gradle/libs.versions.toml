@@ -104,7 +104,7 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref="ko
 leakcanary = "com.squareup.leakcanary:leakcanary-android:2.14"
 materialComponents = "com.google.android.material:material:1.11.0"
 mockito = "org.mockito:mockito-inline:5.2.0"
-mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.2.1"
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.4.0"
 mockk = "io.mockk:mockk:1.13.9"
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
